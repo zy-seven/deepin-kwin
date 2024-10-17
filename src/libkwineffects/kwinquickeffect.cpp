@@ -387,6 +387,7 @@ void QuickSceneEffect::addScreen(EffectScreen *screen)
         }
     });
 
+    incubator->setInitialProperties(properties);
     d->incubators[screen].reset(incubator);
     d->qmlComponent->create(*incubator);
 }

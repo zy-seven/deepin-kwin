@@ -86,7 +86,7 @@ DesktopGridEffect::~DesktopGridEffect()
 }
 
 QVariantMap DesktopGridEffect::initialProperties(EffectScreen *screen)
-{
+{qCritical() << "=============DesktopGridEffect::initialProperties===========";
     return QVariantMap{
         {QStringLiteral("effect"), QVariant::fromValue(this)},
         {QStringLiteral("targetScreen"), QVariant::fromValue(screen)},

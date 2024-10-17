@@ -11,12 +11,13 @@ add_library(effectsplugin
 target_link_libraries(effectsplugin
     kwineffects
 
-    Qt${QT_MAJOR_VERSION}::Core
-    Qt${QT_MAJOR_VERSION}::Gui
-    Qt${QT_MAJOR_VERSION}::Qml
-    Qt${QT_MAJOR_VERSION}::Quick
+    Qt::Core
+    Qt::Gui
+    Qt::Qml
+    Qt::Quick
+
 )
 
-install(DIRECTORY qml/ DESTINATION ${KDE_INSTALL_QMLDIR}/org/deepin/kwin/private/effects)
-install(TARGETS effectsplugin DESTINATION ${KDE_INSTALL_QMLDIR}/org/deepin/kwin/private/effects)
-install(FILES qmldir DESTINATION ${KDE_INSTALL_QMLDIR}/org/deepin/kwin/private/effects)
+install(DIRECTORY qml/ DESTINATION ${KDE_INSTALL_QMLDIR}/org/kde/kwin/private/effects)
+install(TARGETS effectsplugin DESTINATION ${KDE_INSTALL_QMLDIR}/org/kde/kwin/private/effects)
+install(FILES qmldir DESTINATION ${KDE_INSTALL_QMLDIR}/org/kde/kwin/private/effects)

@@ -18,8 +18,8 @@ import org.kde.plasma.components 3.0 as PC3
 Rectangle {
     id: container
 
-    required property QtObject effect
-    required property QtObject targetScreen
+    property QtObject effect
+    property QtObject targetScreen
 
     property bool animationEnabled: false
     property bool organized: false

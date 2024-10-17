@@ -525,12 +525,8 @@ private:
     QPoint m_cursorPos{-1, -1};
     int m_buttonType{0};
 
-    QAction *m_showActions = nullptr;
-    QAction *m_showActionw = nullptr;
-    QAction *m_showActiona = nullptr;
+    QAction *m_showAction = nullptr;
     QList<QKeySequence> shortcut;
-    QList<QKeySequence> shortcutw;
-    QList<QKeySequence> shortcuta;
     QList<EffectWindow *> m_notificationList;
 
     EffectWindow *m_windowMove = nullptr;
