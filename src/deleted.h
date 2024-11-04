@@ -149,6 +149,10 @@ public:
     {
         return m_wasWindowMenu;
     }
+    bool isWallPaper() const override
+    {
+        return m_wasWallpaper;
+    }
 
 private Q_SLOTS:
     void mainWindowClosed(KWin::Window *window);
@@ -191,6 +195,7 @@ private:
     bool m_wasSplitMenu;
     bool m_wasSwitcherWin;
     bool m_wasWindowMenu;
+    bool m_wasWallpaper;
 };
 
 inline void Deleted::refWindow()

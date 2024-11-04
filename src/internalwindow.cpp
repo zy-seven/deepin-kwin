@@ -246,6 +246,11 @@ bool InternalWindow::isOutline() const
     return false;
 }
 
+bool InternalWindow::isWallPaper() const
+{
+    return false;
+}
+
 bool InternalWindow::isSplitBar() const
 {
     if (m_handle) {

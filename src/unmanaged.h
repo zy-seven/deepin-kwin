@@ -39,6 +39,7 @@ public:
     bool isSplitMenu() const override;
     bool isSwitcherWin() const override;
     bool isWindowMenu() const override;
+    bool isWallPaper() const override;
 
     QString captionNormal() const override { return wm_name; }
     QString captionSuffix() const override { return {}; }
@@ -88,6 +89,7 @@ private:
     bool m_switcherwin = false;
     bool m_scheduledRelease = false;
     bool m_windowMenu = false;
+    bool m_wallpaper = false;
     QString wm_name;
 };
 

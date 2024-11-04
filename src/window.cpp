@@ -945,6 +945,8 @@ Layer Window::belongsToLayer() const
     // ActiveLayer, so that active fullscreen windows will still cover everything)
     // Since the desktop is also activated, nothing should be in the ActiveLayer, though
     if (isUnmanaged() || isInternal()) {
+        if (isWallPaper())
+            return SecondLayer;
         return UnmanagedLayer;
     }
     if (isLockScreen() && !waylandServer()) {

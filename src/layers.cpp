@@ -167,6 +167,9 @@ void Workspace::propagateWindows(bool propagate_new_windows)
         if (stacking_order.at(i) && stacking_order.at(i)->isSplitBar()) {
             newWindowStack << stacking_order.at(i)->frameId();
         }
+        if (stacking_order.at(i) && stacking_order.at(i)->isWallPaper()) {
+            newWindowStack << stacking_order.at(i)->frameId();
+        }
 
         X11Window *window = qobject_cast<X11Window *>(stacking_order.at(i));
         if (!window || window->hiddenPreview()) {

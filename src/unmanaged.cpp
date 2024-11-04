@@ -139,6 +139,7 @@ bool Unmanaged::track(xcb_window_t w)
         m_splitmenu = wm_name.isEmpty() ? false : wm_name.contains("splitmenu");
         m_switcherwin = internalWindow->property("__kwin_switcherwin").toBool();
         m_windowMenu = wm_name.isEmpty() ? false : wm_name.contains("ctx-menu");
+        m_wallpaper = internalWindow->property("__kwin_wallpaper").toBool();
     }
     m_watermark = wm_name.isEmpty() ? false : wm_name.contains("deepin-watermark");
     if (effects) {
@@ -221,6 +222,11 @@ NET::WindowType Unmanaged::windowType(bool direct, int supportedTypes) const
 bool Unmanaged::isOutline() const
 {
     return m_outline;
+}
+
+bool Unmanaged::isWallPaper() const
+{
+    return m_wallpaper;
 }
 
 bool Unmanaged::isSplitBar() const
