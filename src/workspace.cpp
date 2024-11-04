@@ -68,6 +68,7 @@
 #include "composite.h"
 #include "windowstyle/windowstylemanager.h"
 #include "debugpixmap.h"
+#include "floatingball.h"
 
 // KDE
 #include <KConfig>
@@ -215,6 +216,7 @@ Workspace::Workspace()
     connect(this, &Workspace::configChanged, m_decorationBridge.get(), &Decoration::DecorationBridge::reconfigure);
 
     m_outline = std::make_unique<Outline>();
+    m_floatingball = std::make_unique<FloatingBall>();
 
     initShortcuts();
 
@@ -278,9 +280,13 @@ void Workspace::init()
 
     reconfigureTimer.setSingleShot(true);
     updateToolWindowsTimer.setSingleShot(true);
+    floatingballTimer.setSingleShot(true);
 
     connect(&reconfigureTimer, &QTimer::timeout, this, &Workspace::slotReconfigure);
     connect(&updateToolWindowsTimer, &QTimer::timeout, this, &Workspace::slotUpdateToolWindows);
+    connect(&floatingballTimer, &QTimer::timeout, this, [this]{
+        m_floatingball->show();
+    });
 
     // TODO: do we really need to reconfigure everything when fonts change?
     // maybe just reconfigure the decorations? Move this into libkdecoration?
@@ -367,6 +373,33 @@ void Workspace::init()
     }
 
     setProcessSessionPath();
+    floatingballTimer.start(5000);
+}
+
+QStringList Workspace::stackingOrderString()
+{
+    test_stacking_order.clear();
+    QStringList list;
+    for (int i=0; i < stacking_order.size(); i++) {
+        if (!stacking_order[i]->isDesktop() && !stacking_order[i]->isDock() && !stacking_order[i]->isUnmanaged() && !stacking_order[i]->isDeleted()) {
+            list.append(stacking_order[i]->resourceName());
+            test_stacking_order.append(stacking_order[i]);
+        }        
+    }
+
+    m_floatingball->setOepnWin(list);
+    m_floatingball->setUsedWin(m_UsedList);
+    return list;
+}
+
+void Workspace::setfloatingWinActive(int index)
+{
+    activateWindow(test_stacking_order[index]);
+}
+
+QStringList Workspace::hadUsedStackingString()
+{
+    return m_UsedList;
 }
 
 void Workspace::setProcessSessionPath()
@@ -1019,6 +1052,7 @@ void Workspace::addToStack(Window *window)
     if (!stacking_order.contains(window)) {
         stacking_order.append(window);
     }
+    stackingOrderString();
 }
 
 void Workspace::replaceInStack(Window *original, Deleted *deleted)
@@ -1183,8 +1217,11 @@ void Workspace::removeUnmanaged(Unmanaged *window)
 void Workspace::addDeleted(Deleted *c, Window *orig)
 {
     Q_ASSERT(!deleted.contains(c));
+    if (!orig->isUnmanaged() && !m_UsedList.contains(orig->resourceName()))
+        m_UsedList.append(orig->resourceName());
     deleted.append(c);
     replaceInStack(orig, c);
+    stackingOrderString();
 }
 
 void Workspace::removeDeleted(Deleted *c)

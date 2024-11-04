@@ -3,3 +3,4 @@ install(DIRECTORY onscreennotification/plasma DESTINATION ${KDE_INSTALL_DATADIR}
 install(DIRECTORY frames/plasma DESTINATION ${KDE_INSTALL_DATADIR}/deepin-kwin/frames)
 install(DIRECTORY tabbox/thumbnail_grid DESTINATION ${CMAKE_INSTALL_PREFIX}/share/deepin-kwin/tabbox)
 install(DIRECTORY tabbox/thumbnail_list DESTINATION ${CMAKE_INSTALL_PREFIX}/share/deepin-kwin/tabbox)
+install(DIRECTORY floatingball/plasma DESTINATION ${KDE_INSTALL_DATADIR}/deepin-kwin/floatingball)

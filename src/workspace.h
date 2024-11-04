@@ -108,6 +108,7 @@ class SplitManage;
 class ConfigReader;
 class WindowStyleManager;
 class DebugPixmap;
+class FloatingBall;
 
 typedef KWaylandServer::ClientManagementInterface::WindowState WindowState;
 
@@ -410,6 +411,10 @@ public:
     QList<Window *> unconstrainedStackingOrder() const;
     QList<X11Window *> ensureStackingOrder(const QList<X11Window *> &windows) const;
     QList<Window *> ensureStackingOrder(const QList<Window *> &windows) const;
+
+    QStringList stackingOrderString();
+    QStringList hadUsedStackingString();
+    void setfloatingWinActive(int index);
 
     Window *topWindowOnDesktop(VirtualDesktop *desktop, Output *output = nullptr, bool unconstrained = false,
                                bool only_normal = true) const;
@@ -929,6 +934,11 @@ private:
 
     QTimer updateToolWindowsTimer;
 
+    QTimer floatingballTimer;
+
+    QStringList m_UsedList;
+    QList<Window *> test_stacking_order;
+
     static Workspace *_self;
 
     std::unique_ptr<KStartupInfo> m_startup;
@@ -963,6 +973,7 @@ private:
     std::unique_ptr<Placement> m_placement;
     std::unique_ptr<RuleBook> m_rulebook;
     std::unique_ptr<ScreenEdges> m_screenEdges;
+    std::unique_ptr<FloatingBall> m_floatingball;
 #if KWIN_BUILD_TABBOX
     std::unique_ptr<TabBox::TabBox> m_tabbox;
 #endif
