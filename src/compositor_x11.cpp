@@ -98,7 +98,7 @@ X11Compositor::X11Compositor(QObject *parent)
     connect(&m_releaseSelectionTimer, &QTimer::timeout, this, &X11Compositor::releaseCompositorSelection);
 
     QAction *toggleAction = new QAction(this);
-    toggleAction->setProperty("componentName", QStringLiteral("kwin"));
+    toggleAction->setProperty("componentName", QStringLiteral("deepin-kwin"));
     toggleAction->setObjectName("Suspend Compositing");
     toggleAction->setText(i18n("Suspend Compositing"));
     KGlobalAccel::self()->setDefaultShortcut(toggleAction, QList<QKeySequence>() << (Qt::SHIFT | Qt::ALT | Qt::Key_F12));

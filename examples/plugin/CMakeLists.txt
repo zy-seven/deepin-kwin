@@ -23,7 +23,7 @@ find_package(KWin REQUIRED COMPONENTS
     kwin
 )
 
-kcoreaddons_add_plugin(eventlistener INSTALL_NAMESPACE "kwin/plugins")
+kcoreaddons_add_plugin(eventlistener INSTALL_NAMESPACE "deepin-kwin/plugins")
 target_sources(eventlistener PRIVATE
     main.cpp
     eventlistener.cpp

@@ -24,7 +24,7 @@ int main(int argc, char **argv)
     for (const QString &actionName : actionNames) {
         QAction action;
         action.setObjectName(actionName);
-        action.setProperty("componentName", QStringLiteral("kwin"));
+        action.setProperty("componentName", QStringLiteral("deepin-kwin"));
         action.setProperty("componentDisplayName", QStringLiteral("KWin"));
         KGlobalAccel::self()->setShortcut(&action, {QKeySequence()}, KGlobalAccel::NoAutoloading);
         KGlobalAccel::self()->removeAllShortcuts(&action);

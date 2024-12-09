@@ -31,7 +31,7 @@ int main(int argc, char *argv[])
         return 1;
     }
     KConfig src_cfg(file);
-    KConfig dest_cfg(QStringLiteral("kwinrulesrc"), KConfig::NoGlobals);
+    KConfig dest_cfg(QStringLiteral("deepin-kwinrulesrc"), KConfig::NoGlobals);
     KConfigGroup scg(&src_cfg, QStringLiteral("General"));
     KConfigGroup dcg(&dest_cfg, QStringLiteral("General"));
     int count = scg.readEntry("count", 0);

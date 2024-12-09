@@ -27,7 +27,7 @@ ShowPaintEffectConfig::ShowPaintEffectConfig(QObject *parent, const KPluginMetaD
 {
     m_ui.setupUi(widget());
 
-    auto *actionCollection = new KActionCollection(this, QStringLiteral("kwin"));
+    auto *actionCollection = new KActionCollection(this, QStringLiteral("deepin-kwin"));
 
     actionCollection->setComponentDisplayName(i18n("KWin"));
     actionCollection->setConfigGroup(QStringLiteral("ShowPaint"));

@@ -6,8 +6,8 @@
 
 #pragma once
 
-#include "kwin/plugin.h"
-#include "kwin/input_event_spy.h"
+#include "deepin-kwin/plugin.h"
+#include "deepin-kwin/input_event_spy.h"
 
 namespace KWin
 {

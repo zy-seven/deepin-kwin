@@ -31,7 +31,7 @@ InvertEffectConfig::InvertEffectConfig(QObject *parent, const KPluginMetaData &d
     QVBoxLayout *layout = new QVBoxLayout(widget());
 
     // Shortcut config. The shortcut belongs to the component "kwin"!
-    KActionCollection *actionCollection = new KActionCollection(widget(), QStringLiteral("kwin"));
+    KActionCollection *actionCollection = new KActionCollection(widget(), QStringLiteral("deepin-kwin"));
     actionCollection->setComponentDisplayName(i18n("KWin"));
 
     QAction *a = actionCollection->addAction(QStringLiteral("Invert"));

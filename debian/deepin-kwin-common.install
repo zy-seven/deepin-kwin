@@ -1,0 +1,17 @@
+usr/lib/*/kconf_update_bin/kwin5_update_default_rules
+usr/lib/*/kconf_update_bin/kwin-6.0-delete-desktop-switching-shortcuts
+usr/lib/*/kconf_update_bin/kwin-6.0-remove-breeze-tabbox-default
+usr/lib/*/kconf_update_bin/kwin-6.0-reset-active-mouse-screen
+usr/lib/*/kconf_update_bin/kwin-6.1-remove-gridview-expose-shortcuts
+usr/lib/*/libexec/deepin-kwin*
+usr/lib/*/libexec/kwin*
+usr/lib/*/libdeepin-kcmkwincommon.so.6
+usr/lib/*/libdeepin-kcmkwincommon.so.6.*
+usr/lib/*/qt6/plugins/kf6/packagestructure/
+usr/lib/*/qt6/plugins/deepin-kwin/
+usr/lib/*/qt6/plugins/org.kde.kdecoration2.kcm/kcm_auroraedecoration.so
+usr/lib/*/qt6/plugins/org.kde.kdecoration2/org.kde.kwin.aurorae.so
+usr/lib/*/qt6/plugins/plasma/kcms/systemsettings/
+usr/lib/*/qt6/plugins/plasma/kcms/systemsettings_qwidgets/
+usr/lib/*/qt6/qml/org/kde/kwin/
+usr/share/applications/org.kde.kwin.killer.desktop

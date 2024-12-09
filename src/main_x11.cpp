@@ -49,6 +49,7 @@
 // system
 #include <iostream>
 #include <unistd.h>
+#include <systemd/sd-daemon.h>
 
 Q_LOGGING_CATEGORY(KWIN_CORE, "kwin_core", QtWarningMsg)
 
@@ -310,6 +311,10 @@ void ApplicationX11::performStartup()
 
         notifyKSplash();
         notifyStarted();
+
+        QTimer::singleShot(100, this, [=] {
+            sd_notify(0, "READY=1");
+        });
 
         connect(Cursors::self()->mouse(), &Cursor::posChanged, workspace(), qOverload<const QPointF &>(&Workspace::setActiveOutput));
     });

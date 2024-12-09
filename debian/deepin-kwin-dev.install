@@ -1,0 +1,6 @@
+usr/include/deepin-kwin/
+usr/lib/*/cmake/DeepinKWinDBusInterface/
+usr/lib/*/cmake/DeepinKWin/
+usr/lib/*/libdeepin-kwin.so
+usr/share/dbus-1/interfaces/org.kde.KWin.*
+usr/share/dbus-1/interfaces/org.kde.kwin.*

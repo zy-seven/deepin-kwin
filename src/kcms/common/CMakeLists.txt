@@ -26,6 +26,12 @@ set_target_properties(kcmkwincommon PROPERTIES
     SOVERSION 6
 )
 
+set_target_properties(kcmkwincommon PROPERTIES
+    VERSION ${PROJECT_VERSION}
+    SOVERSION ${PROJECT_VERSION_MAJOR}
+    OUTPUT_NAME deepin-kcmkwincommon
+)
+
 install(TARGETS kcmkwincommon ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} LIBRARY NAMELINK_SKIP)
 
 set(kcm_kwin4_genericscripted_SRCS genericscriptedconfig.cpp)
@@ -37,4 +43,4 @@ target_link_libraries(kcm_kwin4_genericscripted
     Qt::DBus
     Qt::UiTools
 )
-install(TARGETS kcm_kwin4_genericscripted DESTINATION ${KDE_INSTALL_PLUGINDIR}/kwin/effects/configs)
+install(TARGETS kcm_kwin4_genericscripted DESTINATION ${KDE_INSTALL_PLUGINDIR}/deepin-kwin/effects/configs)

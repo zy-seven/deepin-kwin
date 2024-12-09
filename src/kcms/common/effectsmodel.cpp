@@ -273,7 +273,7 @@ void EffectsModel::loadJavascriptEffects(const KConfigGroup &kwinConfig)
 {
     const auto plugins = KPackage::PackageLoader::self()->listPackages(
         QStringLiteral("KWin/Effect"),
-        QStringLiteral("kwin/effects"));
+        QStringLiteral("deepin-kwin/effects"));
     for (const KPluginMetaData &plugin : plugins) {
         EffectData effect;
 
@@ -300,8 +300,8 @@ void EffectsModel::loadJavascriptEffects(const KConfigGroup &kwinConfig)
 
         if (const QString configModule = plugin.value(QStringLiteral("X-KDE-ConfigModule")); !configModule.isEmpty()) {
             if (configModule == QStringLiteral("kcm_kwin4_genericscripted")) {
-                const QString xmlFile = QStandardPaths::locate(QStandardPaths::GenericDataLocation, QLatin1String("kwin/effects/") + plugin.pluginId() + QLatin1String("/contents/config/main.xml"));
-                const QString uiFile = QStandardPaths::locate(QStandardPaths::GenericDataLocation, QLatin1String("kwin/effects/") + plugin.pluginId() + QLatin1String("/contents/ui/config.ui"));
+                const QString xmlFile = QStandardPaths::locate(QStandardPaths::GenericDataLocation, QLatin1String("deepin-kwin/effects/") + plugin.pluginId() + QLatin1String("/contents/config/main.xml"));
+                const QString uiFile = QStandardPaths::locate(QStandardPaths::GenericDataLocation, QLatin1String("deepin-kwin/effects/") + plugin.pluginId() + QLatin1String("/contents/ui/config.ui"));
                 if (QFileInfo::exists(xmlFile) && QFileInfo::exists(uiFile)) {
                     effect.configModule = configModule;
                     effect.configArgs = QVariantList{plugin.pluginId(), QStringLiteral("KWin/Effect")};
@@ -319,7 +319,7 @@ void EffectsModel::loadJavascriptEffects(const KConfigGroup &kwinConfig)
 
 void EffectsModel::loadPluginEffects(const KConfigGroup &kwinConfig)
 {
-    const auto pluginEffects = KPluginMetaData::findPlugins(QStringLiteral("kwin/effects/plugins"));
+    const auto pluginEffects = KPluginMetaData::findPlugins(QStringLiteral("deepin-kwin/effects/plugins"));
     for (const KPluginMetaData &pluginEffect : pluginEffects) {
         if (!pluginEffect.isValid()) {
             continue;
@@ -376,7 +376,7 @@ void EffectsModel::loadPluginEffects(const KConfigGroup &kwinConfig)
 
 void EffectsModel::load(LoadOptions options)
 {
-    KConfigGroup kwinConfig(KSharedConfig::openConfig("kwinrc"), QStringLiteral("Plugins"));
+    KConfigGroup kwinConfig(KSharedConfig::openConfig("deepin-kwinrc"), QStringLiteral("Plugins"));
 
     m_pendingEffects.clear();
     loadBuiltInEffects(kwinConfig);
@@ -483,7 +483,7 @@ void EffectsModel::updateEffectStatus(const QModelIndex &rowIndex, Status effect
 
 void EffectsModel::save()
 {
-    KConfigGroup kwinConfig(KSharedConfig::openConfig("kwinrc"), QStringLiteral("Plugins"));
+    KConfigGroup kwinConfig(KSharedConfig::openConfig("deepin-kwinrc"), QStringLiteral("Plugins"));
 
     QList<EffectData> dirtyEffects;
 
@@ -593,7 +593,7 @@ void EffectsModel::requestConfigure(const QModelIndex &index, QWindow *transient
     Q_ASSERT(!effect.configModule.isEmpty());
 
     KCMultiDialog *dialog = new KCMultiDialog();
-    dialog->addModule(KPluginMetaData(QStringLiteral("kwin/effects/configs/") + effect.configModule), effect.configArgs);
+    dialog->addModule(KPluginMetaData(QStringLiteral("deepin-kwin/effects/configs/") + effect.configModule), effect.configArgs);
     dialog->setAttribute(Qt::WA_DeleteOnClose);
     dialog->winId();
     dialog->windowHandle()->setTransientParent(transientParent);

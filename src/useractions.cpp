@@ -886,7 +886,7 @@ template<typename T, typename Slot>
 void Workspace::initShortcut(const QString &actionName, const QString &description, const QKeySequence &shortcut, T *receiver, Slot slot)
 {
     QAction *a = new QAction(this);
-    a->setProperty("componentName", QStringLiteral("kwin"));
+    a->setProperty("componentName", QStringLiteral("deepin-kwin"));
     a->setObjectName(actionName);
     a->setText(description);
     KGlobalAccel::self()->setDefaultShortcut(a, QList<QKeySequence>() << shortcut);
@@ -1122,7 +1122,7 @@ void Workspace::windowShortcutUpdated(Window *window)
                 delete action;
             });
 
-            action->setProperty("componentName", QStringLiteral("kwin"));
+            action->setProperty("componentName", QStringLiteral("deepin-kwin"));
             action->setObjectName(key);
             action->setText(i18n("Activate Window (%1)", window->caption()));
             connect(action, &QAction::triggered, window, std::bind(&Workspace::activateWindow, this, window, true));

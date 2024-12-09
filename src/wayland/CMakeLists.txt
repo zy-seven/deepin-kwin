@@ -485,4 +485,4 @@ install(FILES
     ${CMAKE_CURRENT_BINARY_DIR}/wayland-presentation-time-server-protocol.h
     ${CMAKE_CURRENT_BINARY_DIR}/wayland-xx-color-management-v4-server-protocol.h
 
-    DESTINATION ${KDE_INSTALL_INCLUDEDIR}/kwin/wayland COMPONENT Devel)
+    DESTINATION ${KDE_INSTALL_INCLUDEDIR}/deepin-kwin/wayland COMPONENT Devel)

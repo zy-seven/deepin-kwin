@@ -40,7 +40,7 @@ TrackMouseEffectConfig::TrackMouseEffectConfig(QObject *parent, const KPluginMet
 
     addConfig(TrackMouseConfig::self(), widget());
 
-    m_actionCollection = new KActionCollection(this, QStringLiteral("kwin"));
+    m_actionCollection = new KActionCollection(this, QStringLiteral("deepin-kwin"));
     m_actionCollection->setComponentDisplayName(i18n("KWin"));
     m_actionCollection->setConfigGroup(QStringLiteral("TrackMouse"));
     m_actionCollection->setConfigGlobal(true);

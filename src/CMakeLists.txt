@@ -1,6 +1,6 @@
 ecm_setup_version(${PROJECT_VERSION}
                   VARIABLE_PREFIX KWIN
-                  PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/KWinConfigVersion.cmake"
+                  PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/DeepinKWinConfigVersion.cmake"
                   SOVERSION 6
 )
 
@@ -27,6 +27,7 @@ target_include_directories(kwin INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INC
 set_target_properties(kwin PROPERTIES
    VERSION ${PROJECT_VERSION}
    SOVERSION 6
+   OUTPUT_NAME deepin-kwin
 )
 
 target_compile_definitions(kwin PRIVATE
@@ -382,21 +383,28 @@ generate_export_header(kwin EXPORT_FILE_NAME kwin_export.h)
 
 if (KWIN_BUILD_X11 AND KWIN_BUILD_X11_BACKEND)
     add_executable(kwin_x11 main_x11.cpp)
+    set_target_properties(kwin_x11 PROPERTIES
+        OUTPUT_NAME deepin-kwin_x11
+    )
     target_link_libraries(kwin_x11
         KWinX11Platform
         kwin
         KF6::GlobalAccel
+        systemd
     )
     target_compile_definitions(kwin_x11 PRIVATE
         -DTRANSLATION_DOMAIN=\"kwin\"
     )
-    kcoreaddons_target_static_plugins(kwin_x11 NAMESPACE "kwin/effects/plugins")
+    kcoreaddons_target_static_plugins(kwin_x11 NAMESPACE "deepin-kwin/effects/plugins")
     install(TARGETS kwin_x11 ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 endif()
 
 install(TARGETS kwin EXPORT KWinTargets ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 
 add_executable(kwin_wayland main_wayland.cpp)
+set_target_properties(kwin_wayland PROPERTIES
+    OUTPUT_NAME deepin-kwin_wayland
+)
 
 if(TARGET PkgConfig::libsystemd)
     ecm_qt_declare_logging_category(kwin_wayland
@@ -421,7 +429,7 @@ endif()
 target_compile_definitions(kwin_wayland PRIVATE
     -DTRANSLATION_DOMAIN=\"kwin\"
 )
-kcoreaddons_target_static_plugins(kwin_wayland NAMESPACE "kwin/effects/plugins")
+kcoreaddons_target_static_plugins(kwin_wayland NAMESPACE "deepin-kwin/effects/plugins")
 
 install(TARGETS kwin_wayland ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 if (HAVE_LIBCAP)
@@ -451,9 +459,9 @@ add_custom_target(
             ${CMAKE_CURRENT_BINARY_DIR}/org.kde.KWin.TabletModeManager.xml
 )
 
-install(FILES kwin.kcfg DESTINATION ${KDE_INSTALL_KCFGDIR})
+install(FILES deepin-kwin.kcfg DESTINATION ${KDE_INSTALL_KCFGDIR})
 if (KWIN_BUILD_NOTIFICATIONS)
-    install(FILES kwin.notifyrc DESTINATION ${KDE_INSTALL_KNOTIFYRCDIR})
+    install(FILES deepin-kwin.notifyrc DESTINATION ${KDE_INSTALL_KNOTIFYRCDIR})
 endif()
 install(
     FILES
@@ -468,10 +476,10 @@ install(
         ${KDE_INSTALL_DBUSINTERFACEDIR}
 )
 
-install(EXPORT KWinTargets DESTINATION "${KDE_INSTALL_CMAKEPACKAGEDIR}/KWin" FILE KWinTargets.cmake NAMESPACE KWin:: )
+install(EXPORT KWinTargets DESTINATION "${KDE_INSTALL_CMAKEPACKAGEDIR}/DeepinKWin" FILE DeepinKWinTargets.cmake NAMESPACE KWin:: )
 
 if (KWIN_BUILD_X11)
-    install(FILES atoms.h DESTINATION ${KDE_INSTALL_INCLUDEDIR}/kwin COMPONENT Devel)
+    install(FILES atoms.h DESTINATION ${KDE_INSTALL_INCLUDEDIR}/deepin-kwin COMPONENT Devel)
 endif()
 
 install(FILES
@@ -546,7 +554,7 @@ install(FILES
     xdgshellintegration.h
     xdgshellwindow.h
     xkb.h
-    DESTINATION ${KDE_INSTALL_INCLUDEDIR}/kwin COMPONENT Devel)
+    DESTINATION ${KDE_INSTALL_INCLUDEDIR}/deepin-kwin COMPONENT Devel)
 
 install(FILES
     core/colorlut3d.h
@@ -581,7 +589,7 @@ install(FILES
     core/session_logind.h
     core/session_noop.h
     core/shmgraphicsbufferallocator.h
-    DESTINATION ${KDE_INSTALL_INCLUDEDIR}/kwin/core COMPONENT Devel)
+    DESTINATION ${KDE_INSTALL_INCLUDEDIR}/deepin-kwin/core COMPONENT Devel)
 
 install(FILES
     utils/c_ptr.h
@@ -605,7 +613,7 @@ install(FILES
     utils/version.h
     utils/vsyncmonitor.h
     utils/xcbutils.h
-    DESTINATION ${KDE_INSTALL_INCLUDEDIR}/kwin/utils COMPONENT Devel)
+    DESTINATION ${KDE_INSTALL_INCLUDEDIR}/deepin-kwin/utils COMPONENT Devel)
 
 install(FILES
     effect/animationeffect.h
@@ -619,7 +627,7 @@ install(FILES
     effect/quickeffect.h
     effect/timeline.h
     effect/xcb.h
-    DESTINATION ${KDE_INSTALL_INCLUDEDIR}/kwin/effect COMPONENT Devel)
+    DESTINATION ${KDE_INSTALL_INCLUDEDIR}/deepin-kwin/effect COMPONENT Devel)
 
 install(FILES
     opengl/abstract_opengl_context_attribute_builder.h
@@ -642,7 +650,7 @@ install(FILES
     opengl/glutils.h
     opengl/glvertexbuffer.h
     opengl/openglcontext.h
-    DESTINATION ${KDE_INSTALL_INCLUDEDIR}/kwin/opengl COMPONENT Devel
+    DESTINATION ${KDE_INSTALL_INCLUDEDIR}/deepin-kwin/opengl COMPONENT Devel
 )
 
 install(FILES
@@ -669,20 +677,20 @@ install(FILES
     scene/workspacescene.h
     scene/workspacescene_opengl.h
     scene/workspacescene_qpainter.h
-    DESTINATION ${KDE_INSTALL_INCLUDEDIR}/kwin/scene COMPONENT Devel
+    DESTINATION ${KDE_INSTALL_INCLUDEDIR}/deepin-kwin/scene COMPONENT Devel
 )
 
-set(CMAKECONFIG_INSTALL_DIR "${KDE_INSTALL_CMAKEPACKAGEDIR}/KWin")
+set(CMAKECONFIG_INSTALL_DIR "${KDE_INSTALL_CMAKEPACKAGEDIR}/DeepinKWin")
 
-install(FILES  "${CMAKE_CURRENT_BINARY_DIR}/KWinConfig.cmake"
-               "${CMAKE_CURRENT_BINARY_DIR}/KWinConfigVersion.cmake"
+install(FILES  "${CMAKE_CURRENT_BINARY_DIR}/DeepinKWinConfig.cmake"
+               "${CMAKE_CURRENT_BINARY_DIR}/DeepinKWinConfigVersion.cmake"
         DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
         COMPONENT Devel )
 
 configure_package_config_file(
-  "${CMAKE_CURRENT_SOURCE_DIR}/KWinConfig.cmake.in"
-  "${CMAKE_CURRENT_BINARY_DIR}/KWinConfig.cmake"
+  "${CMAKE_CURRENT_SOURCE_DIR}/DeepinKWinConfig.cmake.in"
+  "${CMAKE_CURRENT_BINARY_DIR}/DeepinKWinConfig.cmake"
   INSTALL_DESTINATION  ${CMAKECONFIG_INSTALL_DIR}
 )
 
-install(EXPORT KWinTargets DESTINATION "${CMAKECONFIG_INSTALL_DIR}" FILE KWinTargets.cmake NAMESPACE KWin:: )
+install(EXPORT KWinTargets DESTINATION "${CMAKECONFIG_INSTALL_DIR}" FILE DeepinKWinTargets.cmake NAMESPACE KWin:: )

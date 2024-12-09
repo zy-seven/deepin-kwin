@@ -75,7 +75,7 @@ NightLightManager::NightLightManager()
     readConfig();
 
     QAction *toggleAction = new QAction(this);
-    toggleAction->setProperty("componentName", QStringLiteral("kwin"));
+    toggleAction->setProperty("componentName", QStringLiteral("deepin-kwin"));
     toggleAction->setObjectName(QStringLiteral("Toggle Night Color"));
     toggleAction->setText(i18nc("Temporarily disable/reenable Night Light", "Suspend/Resume Night Light"));
     KGlobalAccel::setGlobalShortcut(toggleAction, QList<QKeySequence>());

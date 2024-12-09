@@ -91,7 +91,7 @@ Application::Application(Application::OperationMode mode, int &argc, char **argv
     , m_eventFilter(new XcbEventFilter())
 #endif
     , m_configLock(false)
-    , m_config(KSharedConfig::openConfig(QStringLiteral("kwinrc")))
+    , m_config(KSharedConfig::openConfig(QStringLiteral("deepin-kwinrc")))
     , m_kxkbConfig()
     , m_operationMode(mode)
 {
@@ -191,7 +191,7 @@ bool Application::wasCrash()
 
 void Application::createAboutData()
 {
-    KAboutData aboutData(QStringLiteral("kwin"), // The program name used internally
+    KAboutData aboutData(QStringLiteral("deepin-kwin"), // The program name used internally
                          i18n("KWin"), // A displayable program name string
                          KWIN_VERSION_STRING, // The program version string
                          i18n("KDE window manager"), // Short description of what the app does

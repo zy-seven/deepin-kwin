@@ -44,7 +44,7 @@ ZoomEffectConfig::ZoomEffectConfig(QObject *parent, const KPluginMetaData &data)
 #endif
 
     // Shortcut config. The shortcut belongs to the component "kwin"!
-    KActionCollection *actionCollection = new KActionCollection(this, QStringLiteral("kwin"));
+    KActionCollection *actionCollection = new KActionCollection(this, QStringLiteral("deepin-kwin"));
     actionCollection->setComponentDisplayName(i18n("KWin"));
     actionCollection->setConfigGroup(QStringLiteral("Zoom"));
     actionCollection->setConfigGlobal(true);

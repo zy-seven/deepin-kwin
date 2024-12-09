@@ -53,7 +53,7 @@ using namespace TabBox;
 
 KWinTabBoxConfig::KWinTabBoxConfig(QObject *parent, const KPluginMetaData &data)
     : KCModule(parent, data)
-    , m_config(KSharedConfig::openConfig("kwinrc"))
+    , m_config(KSharedConfig::openConfig("deepin-kwinrc"))
     , m_data(new KWinTabboxData(this))
 {
     QTabWidget *tabWidget = new QTabWidget(widget());
@@ -138,7 +138,7 @@ static QList<KPackage::Package> availableLnFPackages()
         pkg.setFallbackPackage(KPackage::Package());
         if (!pkg.filePath("defaults").isEmpty()) {
             KSharedConfigPtr conf = KSharedConfig::openConfig(pkg.filePath("defaults"));
-            KConfigGroup cg = KConfigGroup(conf, QStringLiteral("kwinrc"));
+            KConfigGroup cg = KConfigGroup(conf, QStringLiteral("deepin-kwinrc"));
             cg = KConfigGroup(&cg, QStringLiteral("WindowSwitcher"));
             if (!cg.readEntry("LayoutName", QString()).isEmpty()) {
                 packages << pkg;
@@ -177,7 +177,7 @@ void KWinTabBoxConfig::initLayoutLists()
     for (const auto &offer : offers) {
         const QString pluginName = offer.pluginId();
         const QString scriptFile = QStandardPaths::locate(QStandardPaths::GenericDataLocation,
-                                                          QLatin1String("kwin/tabbox/") + pluginName + QLatin1String("/contents/ui/main.qml"));
+                                                          QLatin1String("deepin-kwin/tabbox/") + pluginName + QLatin1String("/contents/ui/main.qml"));
         if (scriptFile.isEmpty()) {
             qWarning() << "scriptfile is null" << pluginName;
             continue;

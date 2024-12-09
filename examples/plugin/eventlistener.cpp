@@ -5,8 +5,8 @@
 */
 
 #include "eventlistener.h"
-#include "kwin/input.h"
-#include "kwin/input_event.h"
+#include "deepin-kwin/input.h"
+#include "deepin-kwin/input_event.h"
 
 #include <QDebug>
 

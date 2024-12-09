@@ -1,5 +1,5 @@
 # KI18N Translation Domain for this library.
-add_definitions(-DTRANSLATION_DOMAIN=\"kcm_kwin_effects\")
+add_definitions(-DTRANSLATION_DOMAIN=\"deepin-kcm_kwin_effects\")
 
 ########### next target ###############
 

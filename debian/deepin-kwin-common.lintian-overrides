@@ -1,0 +1,4 @@
+kwin-common: package-name-doesnt-match-sonames libdeepin-kcmkwincommon6
+kwin-common: lacks-unversioned-link-to-shared-library example: usr/lib/*/libdeepin-kcmkwincommon.so [usr/lib/*/libdeepin-kcmkwincommon.so.*]
+# we don’t ship header files for these, so no need for control files
+kwin-common: no-symbols-control-file usr/lib/*/libdeepin-kcmkwincommon.so.6.*

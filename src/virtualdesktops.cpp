@@ -852,7 +852,7 @@ void VirtualDesktopManager::initSwitchToShortcuts()
 QAction *VirtualDesktopManager::addAction(const QString &name, const KLocalizedString &label, uint value, const QKeySequence &key, void (VirtualDesktopManager::*slot)())
 {
     QAction *a = new QAction(this);
-    a->setProperty("componentName", QStringLiteral("kwin"));
+    a->setProperty("componentName", QStringLiteral("deepin-kwin"));
     a->setObjectName(name.arg(value));
     a->setText(label.subs(value).toString());
     a->setData(value);
@@ -864,7 +864,7 @@ QAction *VirtualDesktopManager::addAction(const QString &name, const KLocalizedS
 QAction *VirtualDesktopManager::addAction(const QString &name, const QString &label, const QKeySequence &key, void (VirtualDesktopManager::*slot)())
 {
     QAction *a = new QAction(this);
-    a->setProperty("componentName", QStringLiteral("kwin"));
+    a->setProperty("componentName", QStringLiteral("deepin-kwin"));
     a->setObjectName(name);
     a->setText(label);
     KGlobalAccel::setGlobalShortcut(a, key);

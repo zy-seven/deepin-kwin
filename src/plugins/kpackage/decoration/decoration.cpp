@@ -13,7 +13,7 @@ public:
     using KPackage::PackageStructure::PackageStructure;
     void initPackage(KPackage::Package *package) override
     {
-        package->setDefaultPackageRoot(QStringLiteral("kwin/decorations/"));
+        package->setDefaultPackageRoot(QStringLiteral("deepin-kwin/decorations/"));
 
         package->addDirectoryDefinition("config", QStringLiteral("config"));
         package->setMimeTypes("config", QStringList{QStringLiteral("text/xml")});

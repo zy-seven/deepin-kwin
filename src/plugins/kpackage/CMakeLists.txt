@@ -4,6 +4,7 @@
 function(kwin_add_kpackage_structure dir file)
     kcoreaddons_add_plugin(kwin_${dir} SOURCES ${file} INSTALL_NAMESPACE kf6/packagestructure)
     target_link_libraries(kwin_${dir} KF6::Package)
+    set_target_properties(kwin_${dir} PROPERTIES OUTPUT_NAME deepin-kwin_${dir})
 endfunction()
 
 kwin_add_kpackage_structure(aurorae aurorae/aurorae.cpp)

@@ -13,7 +13,7 @@ public:
     using KPackage::PackageStructure::PackageStructure;
     void initPackage(KPackage::Package *package) override
     {
-        package->setDefaultPackageRoot(QStringLiteral("kwin/effects/"));
+        package->setDefaultPackageRoot(QStringLiteral("deepin-kwin/effects/"));
 
         package->addDirectoryDefinition("code", QStringLiteral("code"));
         package->setMimeTypes("code", QStringList{QStringLiteral("text/plain")});
